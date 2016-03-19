@@ -14,6 +14,10 @@ app.use(express.bodyParser());
 app.get('/', function(req, res) {
     res.render('index',{title:"My Blog", entries:blogEngine.getBlogEntries()});
 });
+
+app.get('/inscription', function(req, res) {
+    res.render('inscription', {title:"About Me"});
+});
  
 app.get('/about', function(req, res) {
     res.render('about', {title:"About Me"});
