@@ -74,24 +74,49 @@
     <input type="submit" value="get">
   </form>
 
-
-
 <div class="row">
 		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<label for="basic-url"><h3>Mettez le lien du boncoin du logement que vous voulez !</h3></label>
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon3">Leboncoin : </span>
-				<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="field1">
-			</div>
-			<pour_bouton>
-				</br>
-				<input type="submit" class="btn btn-lg btn-success" id="poke" onclick="window.location='http://localhost:3001/';"></input>
-			</pour_bouton>
+		<div class="col-md-2">
+		Pseudo :
+			<input id="pseudo"></input>
+		</br>
+		Adresse Mail :
+			<input id="email"></input>
+		</br>
+		Ville :
+			<input id="city"></input>
+		Code Postal :
+			<input id="postal"></input>
+		</div>
+		<div class="col-md-2">
+			Compétences :
+			</br>
+			<input id="skill"></input>
+			<div id="skills"></div>
+			<script>
+			var tab_input = new Array();
+			function add_input()
+			{
+			document.getElementById('skills').innerHTML = '';
+			var name = "skill"+tab_input.length.toString();
+			var input = document.createElement("input");
+				input.setAttribute("id",name);
+			document.getElementById('skills').appendChild(input);
+			//tab_input[tab_input.length] = input;
+			//console.log(tab_input);
+			}
+			//add_input();
+			</script>
+			<p><input type="button" value="Ajouter" id="add" onclick="add_input();"/><input type="button" value="Retirer" id="remove" /></p>
+		</div>
+		<div class="col-md-4">
+		Description :
+		</br>
+			<input id="description"></input>
+			<p><input type="button" value="Envoyer" id="send" /></p>
 		</div>
 		<div class="col-md-2"></div>
 </div>
-
 
 
 

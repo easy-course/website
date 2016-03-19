@@ -42,3 +42,34 @@ app.get('/personne/:id', function(req, res) { //lien
 });
  
 app.listen(3000);
+
+
+
+
+/*
+function registration()
+{
+
+var server = http.createServer(function(req, res) {
+    fs.readFile('./views/inscription.html', 'utf-8', function(error, content) {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.end(content);
+    });
+});
+
+var io = require('socket.io').listen(server);
+
+// Quand un client se connecte, on le note dans la console
+io.sockets.on('connection', function (socket) {
+    console.log('Un client est connecté !');
+	socket.broadcast.emit('message', 'Un autre client vient de se connecter !');
+	socket.emit('message', 'Vous êtes bien connecté !');
+	// Quand le serveur reçoit un signal de type "message" du client    
+    socket.on('message', function (message) {
+        console.log('Un client me parle ! Il me dit : ' + message);
+    });	
+});
+
+
+server.listen(8080);
+};*/

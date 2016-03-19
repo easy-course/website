@@ -11,7 +11,7 @@ for(var x in parsed)
 	entries.push(parsed[x]);
 
 entries.push(
-    {id: "7", name: "Douglas Adams", type: "comedy"}
+    {pseudo: "XX", email: "XX", ville: "XX", longitude: "XX", latitude: "XX", competence: [{ domaine: "XX", specialite: "XX" }]        }
 );
 
 

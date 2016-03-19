@@ -84,5 +84,41 @@
         "id": "7",
         "name": "Douglas Adams",
         "type": "comedy"
+    },
+    {
+        "id": "7",
+        "name": "Douglas Adams",
+        "type": "comedy"
+    },
+    {
+        "id": "7",
+        "name": "Douglas Adams",
+        "type": "comedy"
+    },
+    {
+        "pseudo": "XX",
+        "email": "XX",
+        "ville": "XX",
+        "longitude": "XX",
+        "latitude": "XX",
+        "competence": [
+            {
+                "domaine": "XX",
+                "specialite": "XX"
+            }
+        ]
+    },
+    {
+        "pseudo": "XX",
+        "email": "XX",
+        "ville": "XX",
+        "longitude": "XX",
+        "latitude": "XX",
+        "competence": [
+            {
+                "domaine": "XX",
+                "specialite": "XX"
+            }
+        ]
     }
 ]
