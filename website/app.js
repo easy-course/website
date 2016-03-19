@@ -18,6 +18,19 @@ app.get('/', function(req, res) {
 app.get('/inscription', function(req, res) {
     res.render('inscription', {title:"About Me"});
 });
+
+
+app.get('/inscription.html/:p1', function(request, response) {
+  var p1 = request.params.p1; 
+  console.log(p1);
+  response.sendFile( __dirname  + '/inscription.html');
+});
+
+
+app.get('/page', function(req, res) {
+    res.render('page', {title:"page"});
+});
+
  
 app.get('/about', function(req, res) {
     res.render('about', {title:"About Me"});
