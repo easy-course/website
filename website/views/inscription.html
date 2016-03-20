@@ -41,9 +41,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#">Profil</a></li>
-        <li><a href="/inscription">Inscription</a></li>
+        <li class="active"><a href="/inscription">Inscription<span class="sr-only">(current)</span></a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -73,44 +73,91 @@
 		<form method="get">
 		<div class="col-md-2"></div>
 		<div class="col-md-2">
-		Pseudo :
-			<input type="text" name="pseudo"></input>
-		</br>
-		Adresse Mail :
-			<input type="text" name="email"></input>
-		</br>
-		Ville :
-			<input type="text" name="city"></input>
-		</br>
-		Code Postal :
-			<input type="text" name="postal"></input>
+			</br>
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Pseudo</h3>
+			  </div>
+			  <div class="panel-body">
+				<input class="form-control" type="text" name="pseudo"></input>
+			  </div>
+			</div>	
+			</br>
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Adresse Mail</h3>
+			  </div>
+			  <div class="panel-body">
+				<input class="form-control" type="text" name="email"></input>
+			  </div>
+			</div>
+			</br>
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Ville</h3>
+			  </div>
+			  <div class="panel-body">
+				<input class="form-control" type="text" name="city"></input>
+			  </div>
+			</div>
+			</br>
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Code Postal</h3>
+			  </div>
+			  <div class="panel-body">
+				<input class="form-control" type="text" name="postal"></input>
+			  </div>
+			</div>
 		</div>
 		<div class="col-md-2">
-			Compétences :
 			</br>
-			<input type="text" name="skill"></input>
-			<div id="skills"></div>
-			<script>
-			var tab_input = new Array();
-			function add_input()
-			{
-			document.getElementById('skills').innerHTML = '';
-			var name = "skill"+tab_input.length.toString();
-			var input = document.createElement("input");
-				input.setAttribute("id",name);
-			document.getElementById('skills').appendChild(input);
-			//tab_input[tab_input.length] = input;
-			//console.log(tab_input);
-			}
-			//add_input();
-			</script>
-			<p><input type="button" value="Ajouter" id="add" onclick="add_input();"/><input type="button" value="Retirer" id="remove" /></p>
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Compétences</h3>
+			  </div>
+			  <div class="panel-body">
+				<input class="form-control" type="text" name="skill"></input>
+				<div id="skills"></div>
+				<script>
+					var tab_input = new Array();
+					function add_input()
+					{
+					if(document.getElementById('skills').innerHTML == '')
+						document.getElementById('skills').innerHTML = '';
+					var name = "skill"+tab_input.length.toString();
+					var input = document.createElement("input");
+						input.setAttribute("id",name);
+						input.setAttribute("name",name);
+						input.setAttribute("class","form-control");
+					document.getElementById('skills').appendChild(input);
+					tab_input[tab_input.length] = input;
+					}
+					//add_input();
+					
+					function remove_input()
+					{
+						var element = document.getElementById(tab_input[tab_input.length-1].id); 
+						element.remove();
+						tab_input.pop();
+					}
+				</script>
+				<p><input type="button" value="Ajouter" id="add" onclick="add_input();"/><input type="button" value="Retirer" id="remove" onclick="remove_input();"/></p>
+			  </div>
+			</div>
 		</div>
 		<div class="col-md-4">
-		Description :
 		</br>
-			<input type="text" name="description"></input>
-			<p><input type="submit" value="Envoyer" id="send" /></p>
+		<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Description</h3>
+			  </div>
+			  <div class="panel-body">
+				<input class="form-control" type="text" name="description"></input>
+			  </div>
+			</div>
+		</br>
+		<p><input type="submit" value="Envoyer" id="send" /></p>
 		</div>
 		<div class="col-md-2"></div>
 		</form>
