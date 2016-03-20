@@ -69,29 +69,26 @@
 </nav>
 
 
-<form method="get" action="/get.html">
-    p1=<input type="text" name="p1">
-    <input type="submit" value="get">
-  </form>
-
 <div class="row">
+		<form method="get">
 		<div class="col-md-2"></div>
 		<div class="col-md-2">
 		Pseudo :
-			<input id="pseudo"></input>
+			<input type="text" name="pseudo"></input>
 		</br>
 		Adresse Mail :
-			<input id="email"></input>
+			<input type="text" name="email"></input>
 		</br>
 		Ville :
-			<input id="city"></input>
+			<input type="text" name="city"></input>
+		</br>
 		Code Postal :
-			<input id="postal"></input>
+			<input type="text" name="postal"></input>
 		</div>
 		<div class="col-md-2">
 			Compétences :
 			</br>
-			<input id="skill"></input>
+			<input type="text" name="skill"></input>
 			<div id="skills"></div>
 			<script>
 			var tab_input = new Array();
@@ -112,10 +109,11 @@
 		<div class="col-md-4">
 		Description :
 		</br>
-			<input id="description"></input>
-			<p><input type="button" value="Envoyer" id="send" /></p>
+			<input type="text" name="description"></input>
+			<p><input type="submit" value="Envoyer" id="send" /></p>
 		</div>
 		<div class="col-md-2"></div>
+		</form>
 </div>
 
 

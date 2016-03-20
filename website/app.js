@@ -1,4 +1,7 @@
-var express = require('express');
+var express = require('express'),
+	bodyParser = require('body-parser'),
+    form = require('express-form'),
+    field = form.field;
 var app = express();
  
 var hbs = require('hbs');
@@ -15,8 +18,28 @@ app.get('/', function(req, res) {
     res.render('index',{title:"My Blog", entries:blogEngine.getBlogEntries()});
 });
 
-app.get('/inscription', function(req, res) {
-    res.render('inscription', {title:"About Me"});
+app.get('/inscription', 
+		form(
+			//field("username").trim().required().is(/^[a-z]+$/),
+			//field("password").trim().required().is(/^[0-9]+$/),
+			//field("email").trim().isEmail()
+		   ),
+		function(req, res) {
+			res.render('inscription', {title:"About Me"});
+			if (!req.form.isValid) {
+			   // Handle errors 
+			   console.log(req.form.errors);
+		 
+			} 
+			else if(req.query['username'] != 'undefined') 
+			{
+			   console.log('Pseudo: ' + req.query['pseudo']);
+			   console.log('Email: ' + req.query['email']);
+			   console.log('Ville: ' + req.query['city']);
+			   console.log('Code Postal: ' + req.query['postal']);
+			   console.log('Competence: ' + req.query['skill']);
+			   console.log('Description: ' + req.query['description']);
+			}
 });
 
 
