@@ -18,14 +18,35 @@
 		body {
 			color:black;
 			background-image:url(https://wallpaperscraft.com/image/triangle_light_dark_shape_88545_1920x1080.jpg);
+			background-position: center; 
+			background-position: top;
 		}
 		.row {
-		background : white;
-		opacity : 0.8;
 		width : 100%;
+		margin-top: 80px;
+		margin-left: 0px;
+		margin-bottom: 20px;
 		}
-		.col-md-2 {
-		opacity : 0;
+
+		.map {
+			border-style: solid;
+		}
+
+		.supertitle {
+		
+		font-family: 'Helvetica Neue',
+		sans-serif;
+		font-size: 80px;
+		font-weight: bold;
+		line-height: 1;
+		color: white;
+		text-align: center; }
+
+		.enseignant {
+			font-size: 20px;
+		}
+		.nosenseignant {
+			color:white;
 		}
 
 	</style>
@@ -34,7 +55,7 @@
 </head>
  
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -60,106 +81,105 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
+      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="supertitle">Easy Course</div>
 
 <div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<h1>Super profs !</h1>
-			{{#each entries}}
-				<p>Enseignant : 
-					<a href="/personne/{{id}}">{{pseudo}}</a><br/>
-					Pro en  : {{competence}}
-				</p>
-			{{/each}}
-		</div>
-		<div class="col-md-2"></div>
+<div class="col-md-1"></div>
+<div class="col-md-4">
+			<div class="nosenseignant"><center><h1>Nos enseignants : </h1></center></div>
+			
+			<div class="alert alert-info" role="alert">{{#each entries}}
+				
+					<div class="enseignant"><a href="/personne/{{id}}">&nbsp;&nbsp;&nbsp;{{pseudo}}</a></br></div>
+					
+					<div class="alert alert-success" role="alert">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					Pro en  : {{competence}}</br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					Situé à : {{ville}}</div>
+
+					
+				{{/each}}
+			</div>
+			
+
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-5">
+	<div class="alert alert-info" role="info">
+		<div id="map" style="width: 100%; height: 100%;"></div>
+	</div>
+</div>
+		
 </div>
 <!-- GOOGLE-->
 
 
 
-<div id="map" style="width: 500px; height: 400px;"></div>
+<div id="adresse">
+{{#each entries}}
+{{pseudo}}:{{ville}}:{{postal}}:{{competence}};
+{{/each}}
+</div>
 
   <script type="text/javascript">
+function carte(item)
+{
+	var address = item[1]+", "+item[2];
+		geocoder.geocode( { 'address': address}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+			latitude = results[0].geometry.location.lat();
+			longitude = results[0].geometry.location.lng();
+			locations.push([item[0], latitude, longitude, item[3], ""]);
+			var map = new google.maps.Map(document.getElementById('map'), {
+			  zoom: 10,
+			  center: new google.maps.LatLng(locations[0][1],locations[0][2])
+			});
+			var infowindow = new google.maps.InfoWindow();
+			var marker, i;
+			for (i = 0; i < locations.length; i++) {  
+			  marker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+				map: map
+			  });
+			  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+				  infowindow.setContent(locations[i][0] + " - " + locations[i][3] + locations[i][4]);
+				  infowindow.open(map, marker);
+				}
+			  })(marker, i));
+			}
+		  } 
+		});
+}
+  
+  
+  
+  
+		var ad = document.getElementById('adresse');
+		var tab = ad.innerHTML.split(";");
 
-
-    var geocoder = new google.maps.Geocoder();
-    var address = "Ormesson sur Marne";
-
-    var latitude;
-    var longitude;
-    var locations;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-
-      if (status == google.maps.GeocoderStatus.OK) {
-        latitude = results[0].geometry.location.lat();
-        longitude = results[0].geometry.location.lng();
-        
-        locations = [
-      ['Bondi Beach', latitude, longitude, "Info", "Bac"],
-      ['Coogee Beach', -33.923036, 151.259052],
-      ['Cronulla Beach', -34.028249, 151.157507],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187],
-      ['Maroubra Beach', -33.950198, 151.259302]
-    ];
-
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: new google.maps.LatLng(-33.92, 151.25),
-        });
-
-        var infowindow = new google.maps.InfoWindow();
-
-        var marker, i;
-
-        for (i = 0; i < locations.length; i++) {  
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-          });
-
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infowindow.setContent(locations[i][0] + " - " + locations[i][3] + locations[i][4]);
-              infowindow.open(map, marker);
-            }
-          })(marker, i));
-        }
-
-
-
-      } 
-    }); 
-    
-
+		var geocoder = new google.maps.Geocoder();
+		    var latitude;
+		    var longitude;
+		    var locations = new Array();
+			
+		for(var iteration = 0 ; iteration < tab.length ; iteration++)
+			{
+				var item = tab[iteration].split(":");
+				carte(item);
+			}
   </script>
 
 
 
 <!--GOOGLE -->
-<footer>
-<p>
-    <a href="/">Home</a> ~ <a href="/about">About Me</a> ~ <a href="/article">Some Article</a>
-</p>
-</footer>
+
  
 </body>
 </html>
