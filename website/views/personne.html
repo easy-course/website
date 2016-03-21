@@ -1,3 +1,7 @@
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
 <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
 	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -68,18 +72,76 @@
 
 
 <div class="row">
-    <div class="col-md-2"></div>
-		<div class="col-md-8">
+    <div class="col-md-4">
+		<div id="map" style="width: 500px; height: 400px;"></div>
+	</div>
+		<div class="col-md-4">
 			<h1>{{blog.pseudo}}</h1><p/>
-      --------------------------Info perso--------------------------<p/>
+      
+		Description : {{blog.description}}
+		</div>
+		<div class="col-md-4">
+			--------------------------Info perso--------------------------<p/>
 			Email : {{blog.email}}<p/>
 			Ville : {{blog.ville}}{{blog.postal}}<p/>
-      Compétence : {{blog.competence}}<p/>
-      Description : {{blog.description}}<p/>
-		
+			Compétence : {{blog.competence}}<p/>
 		</div>
-		<div class="col-md-2"></div>
 </div>
+
+
+<div id="adresse">
+{{blog.pseudo}}:{{blog.ville}}:{{blog.postal}}
+</div>
+
+<script type="text/javascript">
+function carte(item)
+{
+	var address = item[1]+", "+item[2];
+		geocoder.geocode( { 'address': address}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+			latitude = results[0].geometry.location.lat();
+			longitude = results[0].geometry.location.lng();
+			locations.push([item[0], latitude, longitude, item[3], ""]);
+			var map = new google.maps.Map(document.getElementById('map'), {
+			  zoom: 10,
+			  center: new google.maps.LatLng(locations[0][1],locations[0][2])
+			});
+			var infowindow = new google.maps.InfoWindow();
+			var marker, i;
+			for (i = 0; i < locations.length; i++) {  
+			  marker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+				map: map
+			  });
+			  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+				  infowindow.setContent(locations[i][0] + " - " + locations[i][3] + locations[i][4]);
+				  infowindow.open(map, marker);
+				}
+			  })(marker, i));
+			}
+		  } 
+		});
+}
+  
+  
+  
+  
+var ad = document.getElementById('adresse');
+var tab = ad.innerHTML.split(";");
+
+var geocoder = new google.maps.Geocoder();
+    var latitude;
+    var longitude;
+    var locations = new Array();
+	
+for(var iteration = 0 ; iteration < tab.length ; iteration++)
+	{
+		var item = tab[iteration].split(":");
+		carte(item);
+	}   
+
+</script>
 
 <footer>
 <p>
