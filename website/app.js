@@ -6,7 +6,6 @@ var express = require('express'),
     hbs = require('hbs');
 var blogEngine = require('./call_personne');
 	
-var ejs = require('ejs');
 
 
 var app = express('./call_personne');
@@ -83,11 +82,6 @@ app.get('/inscription.html/:p1', function(request, response) {
 
 app.get('/page', function(req, res) {
     res.render('page', {title:"page"});
-});
-
- 
-app.get('/about', function(req, res) {
-    res.render('about', {title:"About Me"});
 });
  
 app.get('/personne/:id', function(req, res) { //lien
