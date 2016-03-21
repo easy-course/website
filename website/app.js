@@ -33,7 +33,7 @@ app.get('/inscription',
 			   console.log(req.form.errors);
 		 
 			} 
-			else if(req.query['pseudo'] != null) 
+			else if(req.query['pseudo'] != null && req.query['pseudo']!='' && req.query['email'] != null) 
 			{
 				console.log('Pseudo: ' + req.query['pseudo']);
 				console.log('Email: ' + req.query['email']);
@@ -67,6 +67,9 @@ app.get('/inscription',
 
 
 
+			}else if(req.query['search'] != null && req.query['search'] != '')
+			{
+				console.log('Recherche: ' + req.query['search']);
 			}
 });
 
