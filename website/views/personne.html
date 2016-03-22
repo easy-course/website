@@ -15,19 +15,46 @@
 		body {
 			color:black;
 			background-image:url(https://wallpaperscraft.com/image/triangle_light_dark_shape_88545_1920x1080.jpg);
+			background-position: center; 
+			background-position: top;
 		}
 		.row {
-		background : white;
-		opacity : 0.8;
 		width : 100%;
+		margin-top: 80px;
+		margin-left: 0px;
+		margin-bottom: 20px;
 		}
 
+		.map {
+			border-style: solid;
+		}
+
+		.supertitle {
+		
+		font-family: 'Helvetica Neue',
+		sans-serif;
+		font-size: 80px;
+		font-weight: bold;
+		line-height: 1;
+		color: white;
+		text-align: center; }
+
+		.enseignant {
+			font-size: 20px;
+		}
+		.nosenseignant {
+			color:white;
+		}
+
+		.panel {
+			color: black;
+		}
 </style>
 
 
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -53,47 +80,74 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
+      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 
+
+
+
+
+
+
+<div class="supertitle">{{blog.pseudo}}</div>
+
 <div class="row">
-    <div class="col-md-4">
-		<div id="map" style="width: 500px; height: 400px;"></div>
+<div class="col-md-1"></div>
+<div class="col-md-4">
+			
+			
+			<div class="alert alert-info" role="alert">
+				
+					<div class="enseignant">&nbsp;&nbsp;&nbsp;<b>Archi doué en : {{blog.competence}}</b></br></div>
+					
+					<div class="alert alert-success" role="alert">					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					<img src="http://icons.iconarchive.com/icons/hopstarter/halloween-avatars/256/Jack-Skellington-icon.png"
+					alt="Smiley face" height="70" width="70"></br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+					<b>Mail perso  : <a id="supermail">{{blog.email}}</a></b></br></br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b>Description  : {{blog.description}}</b></br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b>Situé à : {{blog.ville}}</b></br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b>Code postal : {{blog.postal}}</b>
+
+
+					</div>
+
+					
+				
+			</div>
+			
+
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-5">
+	<div class="alert alert-info" role="info">
+		<div id="map" style="width: 100%; height: 50%;"></div>
 	</div>
-		<div class="col-md-4">
-			<h1>{{blog.pseudo}}</h1><p/>
-      
-		Description : {{blog.description}}
-		</div>
-		<div class="col-md-4">
-			--------------------------Info perso--------------------------<p/>
-			Email : {{blog.email}}<p/>
-			Ville : {{blog.ville}}{{blog.postal}}<p/>
-			Compétence : {{blog.competence}}<p/>
-		</div>
+</div>
+		
 </div>
 
 
-<div id="adresse">
+
+<div id="adresse" style="display:none">
 {{blog.pseudo}}:{{blog.ville}}:{{blog.postal}}
 </div>
 
 <script type="text/javascript">
+
+var mail = document.getElementById('supermail');
+						mail.setAttribute("href","mailto:" + mail.innerHTML);
+
+
+
 function carte(item)
 {
 	var address = item[1]+", "+item[2];
@@ -142,11 +196,5 @@ for(var iteration = 0 ; iteration < tab.length ; iteration++)
 	}   
 
 </script>
-
-<footer>
-<p>
-    <a href="/">Home</a> ~ <a href="/about">About Me</a> ~ <a href="/article">Some Article</a>
-</p>
-</footer>
 
 </body>

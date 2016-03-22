@@ -49,6 +49,7 @@
 			color:white;
 		}
 
+
 	</style>
 
     <title>Home Page</title>
@@ -95,11 +96,11 @@
 			
 			<div class="alert alert-info" role="alert">{{#each entries}}
 				
-					<div class="enseignant"><a href="/personne/{{id}}">&nbsp;&nbsp;&nbsp;{{pseudo}}</a></br></div>
+					<div class="enseignant">&nbsp;&nbsp;&nbsp;<a href="/personne/{{id}}">{{pseudo}}</a></br></div>
 					
 					<div class="alert alert-success" role="alert">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					Pro en  : {{competence}}</br>
+					<b>Pro en  : {{competence}}</b></br>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					Situé à : {{ville}}</div>
 
@@ -121,7 +122,7 @@
 
 
 
-<div id="adresse">
+<div id="adresse" style="display:none">
 {{#each entries}}
 {{pseudo}}:{{ville}}:{{postal}}:{{competence}};
 {{/each}}
@@ -179,7 +180,10 @@ function carte(item)
 
 
 <!--GOOGLE -->
-
+<div class="panel panel-default">
+      <div class="panel-heading">
+      <b><a color="white" href="/">Home</a>  ~ <a href="/inscription">Inscription</a></b></br>Ce site web est le site de la licence professionnelle easycourse sensoriel et stratégies de création en ligne de L'ESILV</div>
+    </div>
  
 </body>
 </html>

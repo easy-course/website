@@ -15,9 +15,24 @@
 			background-image:url(https://wallpaperscraft.com/image/triangle_light_dark_shape_88545_1920x1080.jpg);
 		}
 		.row {
-		background : white;
-		opacity : 0.8;
 		width : 100%;
+		margin-top: 80px;
+		margin-left: 0px;
+		margin-bottom: 20px;
+		}
+		.supertitle {
+		
+		font-family: 'Helvetica Neue',
+		sans-serif;
+		font-size: 40px;
+		font-weight: bold;
+		line-height: 1;
+		color: white;
+		text-align: center;
+		margin-bottom: 30px;}
+
+		.col-md-1 {
+			margin-bottom: 0px;
 		}
 	</style>
     <title>Home Page</title>
@@ -55,12 +70,15 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="supertitle">Inscription des supers enseignants</div>
+<div class="col-md-1"></div>
 
+<div class="col-md-10">
+<div class="alert alert-info" role="alert">
 <div class="row">
 		<form method="post" action="/inscription">
-		<div class="col-md-2"></div>
-		<div class="col-md-2">
-			</br>
+		<div class="col-md-3">
+			
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">Pseudo</h3>
@@ -69,16 +87,16 @@
 				<input class="form-control" type="text" name="pseudo"></input>
 			  </div>
 			</div>	
-			</br>
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">Adresse Mail</h3>
 			  </div>
 			  <div class="panel-body">
-				<input class="form-control" type="text" name="email"></input>
+				<input class="form-control" type="email" name="email"></input>
 			  </div>
 			</div>
-			</br>
+
+
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">Ville</h3>
@@ -87,7 +105,7 @@
 				<input class="form-control" type="text" name="city"></input>
 			  </div>
 			</div>
-			</br>
+
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">Code Postal</h3>
@@ -97,8 +115,9 @@
 			  </div>
 			</div>
 		</div>
-		<div class="col-md-2">
-			</br>
+
+		<div class="col-md-4">
+			
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">Compétences</h3>
@@ -129,27 +148,25 @@
 						tab_input.pop();
 					}
 				</script>
-				<p><input type="button" value="Ajouter" id="add" onclick="add_input();"/><input type="button" value="Retirer" id="remove" onclick="remove_input();"/></p>
+				<p><center><input type="button" value="Ajouter" id="add" onclick="add_input();"  class="btn btn-primary"/><input type="button" value="Retirer" id="remove" onclick="remove_input();" class="btn btn-warning"/></center></p>
 			  </div>
 			</div>
 		</div>
-		<div class="col-md-4">
-		</br>
+		<div class="col-md-5">
+		
 		<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">Description</h3>
 			  </div>
 			  <div class="panel-body">
-				<input class="form-control" type="text" name="description"></input>
+				<input class="form-control" type="text" name="description" style="height: 50%"></input>
 			  </div>
 			</div>
-		</br>
-		<p><input type="submit" value="Envoyer" id="send" /></p>
+		<p>
+		<center><input type="submit" value="Envoyer" id="send" class="btn btn-lg btn-success"/></center>
 		</div>
 		<div class="col-md-2"></div>
 		</form>
-</div>
+</div></div>
 
- 
-</body>
 </html>
